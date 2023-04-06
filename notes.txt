@@ -1,0 +1,14 @@
+php artisan route:list = to list all routes
+php artisan make:controller <name>= to make controllers in app/Http?controllers
+php artisan make:controller <name> -r = to make a resource controller has CRUD operations routes by default.
+see route:list to watch new routes that it created
+------------------------------------
+php artisan make:controller <name> --invokable = to create single action controller for models/controllers than only
+need to do one job.
+--------------------------------------------------------
+to disable or add exception urls to csrf mechanism in laravel go to Http->Middleware->VerifycsrfToken.
+----------------------------------------------------------
+Another way of handling a request validation is through a request class.
+and rules() and messages() methods.
+php artisan make:request <nameOfClass>
+will create a class in Http-> Requests folder.
