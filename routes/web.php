@@ -74,6 +74,8 @@ Route::get('/myhome',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('/myhome2',\App\Http\Controllers\HomeController2::class);
 Route::get('/login',[\App\Http\Controllers\LoginController::class,'index'])->name('login');
 Route::post('/login',[\App\Http\Controllers\LoginController::class,'handleLogin'])->name('login.submit');
+Route::get('/posts',[\App\Http\Controllers\PostsController::class,'index']);
+Route::get('/post-orm',\App\Http\Controllers\PostsOrm::class);
 Route::fallback(function(){
     return "Route not exist.";
 });

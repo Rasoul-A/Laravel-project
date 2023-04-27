@@ -12,3 +12,64 @@ Another way of handling a request validation is through a request class.
 and rules() and messages() methods.
 php artisan make:request <nameOfClass>
 will create a class in Http-> Requests folder.
+----------------------------------------------------
+In order to connect our application to a database.
+use .env file or config->database.php
+set the Database parameters.
+To check connection use Tinker
+php artisan Tinker
+DB::connection()->getPDO();
+-------------------------------------------------------
+Data base Migration-> Creatig tables- ...
+php artisan make:miration create_<name>_table
+a file will be created in database->migrations.
+up() and down() methods are for creating and droping table.
+php artisan migrate -> to apply changes.
+---------------------------------------------------
+php artisan migrate:reset -> delete all migrations
+php artisan migrate:rollback -> goes to previous state.
+php artisan migrate:refresh -> any time we want to apply a change to our table structure.
+it delete and add migrations again. all data will be deleted.
+php artisan migrate --path=<path of out single migration file>
+------------------------------------------------------
+In order  to change columns without deleting existing data of a table. create another migration.
+php artisan make:migration add_<name>_table --table=<nameOfTable>
+------------------------------------------
+Use (seeder) to generate fake data for our database.
+php artisan make:seeder <name>
+after makeing changes to seeders folder files as needed.
+php artisan db:seed
+-----------------------------------------------
+php artisan make:model <name>
+Models  are used to interact with database.
+Then we can use Post object to retrieve database records
+in our controllers classes.
+php artiasan make:model Post
+retrun $posts = Post::all();
+----------------------------
+SoftDelete = means the data will not get deleted from
+our database but it's deleted_at filed will get updated.
+and that record will not be shown in the query results.
+Somehow soft deleting send that data to trash(recycle been) that can be recovered later.
+For implementing:
+php artisan make:migration add_posts_table --table=posts
+then in the up method add $table->softDeletes();
+and in down method add $table->dropSoftDeletes();
+then
+php artisan migrate --path=/database/migrations/........
+Also Add
+use SoftDelete namespace to Post.php class file.
+* Soft deleting only works in Eloquent not in Query Builder.
+-----------------------------------------
+Factories = are like seeders and are used to generate fake data.
+php artisan make:factory PostFactory
+then after applying your prefered fake values
+you need to register your factory in seeder file.
+Post::factory(200)->create();
+then run
+php artisan db:seed;
+-----------------
+use
+php artisan migrate:fresh
+to clear data from your database.
+--------------------------------------------
